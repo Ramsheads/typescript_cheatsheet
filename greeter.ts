@@ -5,6 +5,7 @@ class Student {
      */
     public fullName: string;
     schoolName: string;
+    schoolId: number;
     private problem_list: Array<string>;
     static age: number;
     /*
@@ -23,9 +24,20 @@ class Student {
         }
         this.problem_list = [];
         this.schoolName = "";
+        this.schoolId = 0;
     }
-    public enter_school(schoolName: string) {
-        this.schoolName = schoolName;
+    /*
+     * objはどんな型でもいいが、string型のschoolNameプロパティを持っていて、
+     * もし、schoolIdプロパティを持っている場合はそれがnumber型でないといけない
+     * という意味になる
+     */
+    public enter_school(obj: {schoolName: string, schoolId?: number}) {
+        this.schoolName = obj.schoolName;
+        if (obj.schoolId != null) {
+            this.schoolId = obj.schoolId;
+        } else {
+            this.schoolId = -1;
+        }
     }
     public set_age(age: number) {
         Student.age = age;
@@ -71,7 +83,8 @@ let user = new Student("Jame", "M.", "User");
 document.body.innerHTML = greeter(user);
 
 user.set_age(16);
-user.enter_school("High School of Dead");
+user.enter_school({schoolName: "High School of Dead"});
+user.enter_school({schoolName: "High School of Dead", schoolId: 10});
 user.cause_problem("Make noise while the inter test");
 user.show_problem();
 
