@@ -43,7 +43,7 @@ class Student {
         console.groupEnd();
         console.log("==================================")
     }
-    public tablize_problem() {
+    public tablize_problem(): string {
         var tbl = "<table>"
             + "<caption>" + "Problems caused by " + this.fullName + "</caption>"
             + "<tbody>"
