@@ -21,6 +21,7 @@ class Student {
         } else {
             this.fullName = firstName + " " + lastName;
         }
+        this.problem_list = [];
     }
     public enter_school(schoolName: string) {
         this.schoolName = schoolName;
@@ -41,6 +42,17 @@ class Student {
         console.groupEnd();
         console.log("==================================")
     }
+    public tablize_problem() {
+        var tbl = "<table>"
+            + "<caption>" + "Problems caused by " + this.fullName + "</caption>"
+            + "<tbody>"
+            +   "<tr><th>description</th></tr>";
+        for (const v of this.problem_list) {
+            tbl += "<tr><td>" + v + "</td></tr>";
+        }
+        tbl += "</tbody></table>";
+        return tbl;
+    }
 }
 
 /* StudentクラスにはfirstNameとlastNameのメンバが存在するのでinterfaceに適合する */
@@ -56,3 +68,10 @@ function greeter(person: Person) {
 let user = new Student("Jame", "M.", "User");
 
 document.body.innerHTML = greeter(user);
+
+user.set_age(16);
+user.enter_school("High School of Dead");
+user.cause_problem("Make noise while the inter test");
+user.show_problem();
+
+document.body.innerHTML += user.tablize_problem();
