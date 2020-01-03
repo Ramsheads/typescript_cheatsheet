@@ -22,6 +22,7 @@ class Student {
             this.fullName = firstName + " " + lastName;
         }
         this.problem_list = [];
+        this.schoolName = "";
     }
     public enter_school(schoolName: string) {
         this.schoolName = schoolName;
